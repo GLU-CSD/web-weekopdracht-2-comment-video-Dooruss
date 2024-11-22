@@ -10,9 +10,9 @@ if (!empty($_POST)) {
 
     //dit is een voorbeeld array.  Deze waardes moeten erin staan.
     $postArray = [
-        'name' => "Ieniminie",
+        'name' => $_POST['naam'],
         'email' => "ieniminie@sesamstraat.nl",
-        'message' => "Geweldig dit"
+        'message' => $_POST['message']
     ];
 
     $setReaction = Reactions::setReaction($postArray);
@@ -46,10 +46,13 @@ if (!empty($_POST)) {
     <h2> the reactions here <h2>
 
             <?php
-            echo "<pre>" . var_dump($getReactions) . "</pre>";
-            echo ("<h2>" . count($getReactions) . "</h2>");
+            echo ("<h2> " . count($getReactions) . " </h2>");
+            for ($i = 0; $i < count($getReactions); $i++) {
+                echo ("<div class='bericht'>");
+                echo ($getReactions[$i]['name'] . " -- ");
+                echo ("</div>");
+            }
             ?>
-
 </body>
 
 </html>
